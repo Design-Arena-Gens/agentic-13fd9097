@@ -1,0 +1,68 @@
+<main class="widget">
+  <header class="header">
+    <div>
+      <p class="overline">Capability Pulse</p>
+      <h1>Momentum across modern front-end stacks</h1>
+    </div>
+    <p class="summary">
+      Toggle between focus areas to explore impacts, quality metrics, and delivery signals powering
+      multi-framework feature work.
+    </p>
+  </header>
+
+  <section class="focus-toggle" role="tablist" aria-label="Technical focus areas">
+    <button
+      type="button"
+      class="toggle"
+      role="tab"
+      [attr.aria-selected]="activeFocus() === area.id"
+      [attr.aria-controls]="'focus-' + area.id"
+      [ngClass]="{ active: activeFocus() === area.id }"
+      *ngFor="let area of focusAreas"
+      (click)="selectFocus(area.id)"
+    >
+      <span class="dot" aria-hidden="true"></span>
+      {{ area.label }}
+    </button>
+  </section>
+
+  <section
+    class="panel"
+    role="tabpanel"
+    [attr.id]="'focus-' + selectedFocus().id"
+    [attr.aria-label]="selectedFocus().label + ' capability snapshot'"
+  >
+    <p class="statement">{{ selectedFocus().statement }}</p>
+
+    <div class="metrics">
+      <article class="metric" *ngFor="let metric of selectedFocus().metrics">
+        <div class="metric-header">
+          <p class="metric-label">{{ metric.label }}</p>
+          <p class="metric-value">{{ metric.value }}%</p>
+        </div>
+        <div class="meter">
+          <span class="fill" [ngClass]="metric.accent" [style.width.%]="metric.value"></span>
+        </div>
+      </article>
+    </div>
+
+    <div class="grid">
+      <article class="card">
+        <h2>High-impact Highlights</h2>
+        <ul>
+          <li *ngFor="let highlight of selectedFocus().highlights">{{ highlight }}</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Measured Outcomes</h2>
+        <dl>
+          <div *ngFor="let outcome of selectedFocus().outcomes">
+            <dt>{{ outcome.title }}</dt>
+            <dd>{{ outcome.detail }}</dd>
+          </div>
+        </dl>
+      </article>
+    </div>
+  </section>
+</main>

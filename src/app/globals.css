@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+:root {
+  --app-ink: 222 47% 11%;
+  --app-soft: 215 28% 17%;
+  --app-accent: 199 89% 48%;
+  --app-hot: 281 83% 53%;
+  --app-contrast: 210 40% 98%;
+}
+
+@theme inline {
+  --color-background: hsl(var(--app-ink));
+  --color-foreground: hsl(var(--app-contrast));
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --gradient-orbit: linear-gradient(135deg, hsl(199 95% 58%), hsl(281 83% 58%));
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, hsla(199, 95%, 60%, 0.28), transparent 55%),
+    radial-gradient(circle at 120% 10%, hsla(281, 83%, 58%, 0.26), transparent 45%),
+    hsl(var(--app-ink));
+  color: hsl(var(--app-contrast));
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
